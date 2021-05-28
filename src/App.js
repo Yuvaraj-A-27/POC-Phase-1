@@ -19,7 +19,7 @@ function App(){
           </div>
           <Switch>
               <div className="MainContent">
-                <Route path="/" exact history = {history} component={Root} />
+                {/* <Route path="/" exact history = {history} component={Root} /> */}
                 <Route path="/register"  history = {history} component={Register} />
                 <Route path="/login" history = {history} component={Login}  />
                 <Route path="/dashboard" history = {history} component={Dashboard} /> 
