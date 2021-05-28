@@ -3,6 +3,12 @@ import './DashBoard.css'
 import Root from './Root'
 
 class Dashboard extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            userDetail : [],
+        }
+    }
 
     logOutHandler =()=>{
         sessionStorage.removeItem("userName")
