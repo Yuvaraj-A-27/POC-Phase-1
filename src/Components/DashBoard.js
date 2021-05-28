@@ -3,6 +3,12 @@ import './DashBoard.css'
 import Root from './Root'
 
 class Dashboard extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            userDetail : [],
+        }
+    }
 
     logOutHandler =()=>{
         sessionStorage.removeItem("userName")
@@ -20,7 +26,7 @@ class Dashboard extends React.Component{
                 </div>
                 <div className="left-div">
                     <h4 className="left-div-h4">Create new user</h4>
-                    <p>checking</p>
+                    
                 </div>
                 <div className="main-div">
                     <h4 className="main-div-h4">User Profiles</h4>
@@ -32,7 +38,7 @@ class Dashboard extends React.Component{
         else{
             return(
                 <>
-                    <p>Do log in and come</p>
+                    <p>Please Log in</p>
                 </>
             )
         }
