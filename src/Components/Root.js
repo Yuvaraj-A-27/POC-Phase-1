@@ -17,7 +17,6 @@ class Root extends React.Component{
         this.setState({
             currentUser:id
         })
-        // console.log(this.state.currentUser);
     }
 
     componentDidMount(){
@@ -33,7 +32,7 @@ class Root extends React.Component{
     }
 
     render(){
-        
+        console.log(this.state)
         const userDetail = this.state.userDetail.map( (element) => (<>
             { (this.state.currentUser ===element.id || this.state.currentUser+1 === element.id) &&
             <Card key = {element.id} 
@@ -48,7 +47,7 @@ class Root extends React.Component{
         const pagination = this.state.userDetail.map( (element) => (<><button onClick={()=>this.clickHandler(element.id)}>{element.id}</button>
             </>
         ))
-        console.log(this.state.userDetail);
+        // console.log(this.state.userDetail);
         return(
             <>
             <div className="pagination">

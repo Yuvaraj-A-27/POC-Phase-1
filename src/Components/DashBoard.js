@@ -26,7 +26,6 @@ class Dashboard extends React.Component{
                 </div>
                 <div className="left-div">
                     <h4 className="left-div-h4">Create new user</h4>
-                    
                 </div>
                 <div className="main-div">
                     <h4 className="main-div-h4">User Profiles</h4>
