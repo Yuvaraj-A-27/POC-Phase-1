@@ -157,13 +157,13 @@ class Dashboard extends React.Component{
                 </div>
                 <div className="left-div">
                     <h4 className="left-div-h4">Create new user</h4>
-                    <CreateUser stateData = {this.state}
+                    {/* <CreateUser stateData = {this.state}
                     firstNameHandler = {this.firstNameHandler}
                     lastNameHandler = {this.lastNameHandler}
                     emailHandler = {this.emailHandler}
                     jobHandler = {this.jobHandler}
                     avatarHandler = {this.avatarHandler}
-                    createUserHandler={this.createUserHandler} />
+                    createUserHandler={this.createUserHandler} /> */}
                     <br/>
                     <h4 className = "left-div-h4">Update User Detail</h4>
                     {this.state.componentDidMountHappened && 
