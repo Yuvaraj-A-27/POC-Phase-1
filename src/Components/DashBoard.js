@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React from 'react';
 import CreateUser from './CreateUser';
 import './DashBoard.css'
@@ -38,7 +39,11 @@ class Dashboard extends React.Component{
             job:"",
             avatar : "https://www.x-innovations.se/wp-content/uploads/dummy-prod-1.jpg",
         })
-
+        axios.post("https://reqres.in/api/users",{
+            name: this.state.firstName,
+            job : this.state.job,
+        })
+        .then((res) => (console.log(res)))
     }
 
     firstNameHandler = (event) => {
@@ -121,7 +126,7 @@ class Dashboard extends React.Component{
     }
     
     render(){
-        console.log(this.state.userDetail);
+        // console.log(this.state.userDetail);
         const userName = sessionStorage.getItem("userName");
         if(sessionStorage.getItem("userName") !==null){
             return(
