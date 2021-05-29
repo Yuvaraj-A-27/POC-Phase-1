@@ -118,6 +118,13 @@ class Dashboard extends React.Component{
         }, 100);
     }
 
+    updateUserHandler = (event, updatedData) => {
+        event.preventDefault()
+        this.setState({
+            userDetail : updatedData,
+        })
+    }
+
     componentDidMount(){
         fetch("https://reqres.in/api/users")   //for first 6 users
         .then((res) => {
@@ -169,7 +176,8 @@ class Dashboard extends React.Component{
                     {this.state.componentDidMountHappened && 
                         <UpdateUser 
                         stateData = {updateData}
-                        currentUser = {currentUser}/>
+                        currentUser = {currentUser}
+                        updateUserHandler = {this.updateUserHandler} />
                     }
 
                 </div>
