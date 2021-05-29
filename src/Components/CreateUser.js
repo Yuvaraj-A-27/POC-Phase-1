@@ -27,13 +27,16 @@ class CreateUser extends React.Component{
                     type = "text"
                     value = {this.props.stateData.job}
                     onChange = {this.props.jobHandler} />
-                    <img src ={this.props.stateData.avatar} alt = "user-photo" className="avatar" /><br/>
+                    <img src ={this.props.stateData.avatar} alt = "user" className="avatar" /><br/>
                     <input
                     type ="file"
                     accept="image/*"
                     onChange ={this.props.avatarHandler} /><br/>
-                    <button onClick={this.props.createUserHandler}>create</button>
-
+                    <input 
+                    type="submit"
+                    onClick={this.props.createUserHandler}
+                    value = "Create"
+                    />
                 </form>
             </>
         )
