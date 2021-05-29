@@ -18,6 +18,29 @@ class Dashboard extends React.Component{
         }
     }
 
+    createUserHandler = (event) => {
+        event.preventDefault()
+        let data = {
+            id : this.state.userDetail.length + 1,
+            email : this.state.email,
+            first_name : this.state.firstName,
+            last_name : this.state.lastName,
+            avatar : this.state.avatar
+        }
+        let list = [...this.state.userDetail]
+        list.push(data)
+        this.setState({
+            userDetail:list,
+            id : 13,
+            firstName : "",
+            lastName :"",
+            email : "",
+            job:"",
+            avatar : "https://www.x-innovations.se/wp-content/uploads/dummy-prod-1.jpg",
+        })
+
+    }
+
     firstNameHandler = (event) => {
         event.preventDefault();
         this.setState({
@@ -98,7 +121,7 @@ class Dashboard extends React.Component{
     }
     
     render(){
-        // console.log(this.state.userDetail);
+        console.log(this.state.userDetail);
         const userName = sessionStorage.getItem("userName");
         if(sessionStorage.getItem("userName") !==null){
             return(
@@ -114,7 +137,8 @@ class Dashboard extends React.Component{
                     lastNameHandler = {this.lastNameHandler}
                     emailHandler = {this.emailHandler}
                     jobHandler = {this.jobHandler}
-                    avatarHandler = {this.avatarHandler} />
+                    avatarHandler = {this.avatarHandler}
+                    createUserHandler={this.createUserHandler} />
                 </div>
                 <div className="main-div">
                     <h4 className="main-div-h4">User Profiles</h4>
