@@ -32,7 +32,7 @@ class CreateUser extends React.Component{
                     type ="file"
                     accept="image/*"
                     onChange ={this.props.avatarHandler} /><br/>
-                    <button onClick="">create</button>
+                    <button onClick={this.props.createUserHandler}>create</button>
 
                 </form>
             </>
