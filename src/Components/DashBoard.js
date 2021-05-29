@@ -24,6 +24,42 @@ class Dashboard extends React.Component{
             firstName : event.target.value,
         })
     }
+    
+    lastNameHandler = (event) => {
+        event.preventDefault()
+        this.setState({
+            lastName : event.target.value
+        })
+    }
+
+    emailHandler = (event) => {
+        event.preventDefault()
+        this.setState({
+            email : event.target.value
+        })
+    }
+
+    jobHandler = (event) => {
+        event.preventDefault()
+        this.setState({
+            job : event.target.value
+        })
+    }
+
+    avatarHandler = (event) =>{
+        event.preventDefault()
+        const reader = new FileReader();
+        reader.onload = () => {
+            if(reader.readyState === 2){
+                this.setState(
+                    {
+                        avatar : reader.result,
+                    }
+                )
+            }
+        }
+        reader.readAsDataURL(event.target.files[0])
+    }
 
     logOutHandler =(event)=>{
         event.preventDefault()
@@ -31,8 +67,7 @@ class Dashboard extends React.Component{
         this.props.history.push("/")
     }
 
-    currentUserPagHandler = (id,event) =>{
-        event.preventDefault()
+    currentUserPagHandler = (id) =>{
         this.setState({
             currentUserPag :id
         })
@@ -75,7 +110,11 @@ class Dashboard extends React.Component{
                 <div className="left-div">
                     <h4 className="left-div-h4">Create new user</h4>
                     <CreateUser stateData = {this.state}
-                    firstNameHandler = {this.firstNameHandler} />
+                    firstNameHandler = {this.firstNameHandler}
+                    lastNameHandler = {this.lastNameHandler}
+                    emailHandler = {this.emailHandler}
+                    jobHandler = {this.jobHandler}
+                    avatarHandler = {this.avatarHandler} />
                 </div>
                 <div className="main-div">
                     <h4 className="main-div-h4">User Profiles</h4>
