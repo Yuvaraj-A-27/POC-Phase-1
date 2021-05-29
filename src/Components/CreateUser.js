@@ -11,7 +11,7 @@ class CreateUser extends React.Component{
                     <input 
                     type = "text"
                     value = {this.props.stateData.firstName}
-                    onChange ="" /><br/>
+                    onChange ={this.props.firstNameHandler} /><br/>
                     <label>Last Name </label>
                     <input 
                     type = "text"
@@ -22,6 +22,11 @@ class CreateUser extends React.Component{
                     type ="email"
                     value ={this.props.stateData.email}
                     onChange ="" /><br/>
+                    <label>Job </label>
+                    <input 
+                    type = "text"
+                    value = {this.props.stateData.job}
+                    onChange = "" />
                     <img src ={this.props.stateData.avatar} alt = "user-photo" className="avatar" /><br/>
                     <input
                     type ="file"

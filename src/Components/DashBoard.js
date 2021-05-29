@@ -11,18 +11,28 @@ class Dashboard extends React.Component{
             firstName : "",
             lastName :"",
             email : "",
+            job:"",
             avatar : "https://www.x-innovations.se/wp-content/uploads/dummy-prod-1.jpg",
             userDetail : [],
             currentUserPag : 1,
         }
     }
 
-    logOutHandler =()=>{
+    firstNameHandler = (event) => {
+        event.preventDefault();
+        this.setState({
+            firstName : event.target.value,
+        })
+    }
+
+    logOutHandler =(event)=>{
+        event.preventDefault()
         sessionStorage.removeItem("userName")
         this.props.history.push("/")
     }
 
-    currentUserPagHandler = (id) =>{
+    currentUserPagHandler = (id,event) =>{
+        event.preventDefault()
         this.setState({
             currentUserPag :id
         })
@@ -53,7 +63,7 @@ class Dashboard extends React.Component{
     }
     
     render(){
-        console.log(this.state.userDetail);
+        // console.log(this.state.userDetail);
         const userName = sessionStorage.getItem("userName");
         if(sessionStorage.getItem("userName") !==null){
             return(
@@ -64,14 +74,16 @@ class Dashboard extends React.Component{
                 </div>
                 <div className="left-div">
                     <h4 className="left-div-h4">Create new user</h4>
-                    <CreateUser stateData = {this.state} />
+                    <CreateUser stateData = {this.state}
+                    firstNameHandler = {this.firstNameHandler} />
                 </div>
                 <div className="main-div">
                     <h4 className="main-div-h4">User Profiles</h4>
                     <Root className="" 
                     userDetail = {this.state.userDetail} 
                     currentUserPag = {this.state.currentUserPag}
-                    currentUserPagHandler = {this.currentUserPagHandler} />
+                    currentUserPagHandler = {this.currentUserPagHandler}
+                    />
                 </div>
                 </>
             )
