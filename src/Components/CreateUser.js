@@ -37,7 +37,6 @@ class CreateUser extends React.Component{
                     onClick={this.props.createUserHandler}
                     value = "Create"
                     />
-
                 </form>
             </>
         )

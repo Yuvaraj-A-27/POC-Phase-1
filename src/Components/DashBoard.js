@@ -3,12 +3,13 @@ import React from 'react';
 import CreateUser from './CreateUser';
 import './DashBoard.css'
 import Root from './Root'
+import UpdateUser from './UpdateUser';
 
 class Dashboard extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            id : 13,
+            id : 0,
             firstName : "",
             lastName :"",
             email : "",
@@ -16,6 +17,7 @@ class Dashboard extends React.Component{
             avatar : "https://www.x-innovations.se/wp-content/uploads/dummy-prod-1.jpg",
             userDetail : [],
             currentUserPag : 1,
+            componentDidMountHappened : false
         }
     }
 
@@ -38,12 +40,18 @@ class Dashboard extends React.Component{
             email : "",
             job:"",
             avatar : "https://www.x-innovations.se/wp-content/uploads/dummy-prod-1.jpg",
+            componentDidMountHappened:false,    //this is because when userdetail gets updated, it is not reflecting in updateUser component. so that to re-render that component we need this.
         })
         axios.post("https://reqres.in/api/users",{
             name: this.state.firstName,
             job : this.state.job,
         })
-        .then((res) => (console.log(res)))
+        .then((res) => {
+            console.log(res)
+            this.setState({
+                componentDidMountHappened:true, //this is because when userdetail gets updated, it is not reflecting in updateUser component. so that to re-render that component we need this.
+            })
+        })
     }
 
     firstNameHandler = (event) => {
@@ -97,8 +105,15 @@ class Dashboard extends React.Component{
 
     currentUserPagHandler = (id) =>{
         this.setState({
-            currentUserPag :id
+            currentUserPag :id,
+            componentDidMountHappened:false,
         })
+        
+        setTimeout(() => {
+            this.setState({
+                componentDidMountHappened:true
+            })
+        }, 100);
     }
 
     componentDidMount(){
@@ -121,12 +136,15 @@ class Dashboard extends React.Component{
             list.push(...data.data)
             this.setState({
                 userDetail : list,
+                componentDidMountHappened:true,
             })
         })
     }
     
     render(){
         // console.log(this.state.userDetail);
+        let updateData = this.state.userDetail;
+        let currentUser = this.state.currentUserPag
         const userName = sessionStorage.getItem("userName");
         if(sessionStorage.getItem("userName") !==null){
             return(
@@ -137,13 +155,21 @@ class Dashboard extends React.Component{
                 </div>
                 <div className="left-div">
                     <h4 className="left-div-h4">Create new user</h4>
-                    <CreateUser stateData = {this.state}
+                    {/* <CreateUser stateData = {this.state}
                     firstNameHandler = {this.firstNameHandler}
                     lastNameHandler = {this.lastNameHandler}
                     emailHandler = {this.emailHandler}
                     jobHandler = {this.jobHandler}
                     avatarHandler = {this.avatarHandler}
-                    createUserHandler={this.createUserHandler} />
+                    createUserHandler={this.createUserHandler} /> */}
+                    <br/>
+                    <h4 className = "left-div-h4">Update User Detail</h4>
+                    {this.state.componentDidMountHappened && 
+                        <UpdateUser 
+                        stateData = {updateData}
+                        currentUser = {currentUser}/>
+                    }
+
                 </div>
                 <div className="main-div">
                     <h4 className="main-div-h4">User Profiles</h4>
