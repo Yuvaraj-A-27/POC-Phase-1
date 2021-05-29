@@ -11,21 +11,27 @@ class CreateUser extends React.Component{
                     <input 
                     type = "text"
                     value = {this.props.stateData.firstName}
-                    onChange ="" /><br/>
+                    onChange ={this.props.firstNameHandler} /><br/>
                     <label>Last Name </label>
                     <input 
                     type = "text"
                     value = {this.props.stateData.lastName}
-                    onChange ="" /><br/>
+                    onChange ={this.props.lastNameHandler} /><br/>
                     <label>Email </label>
                     <input
                     type ="email"
                     value ={this.props.stateData.email}
-                    onChange ="" /><br/>
+                    onChange ={this.props.emailHandler} /><br/>
+                    <label>Job </label>
+                    <input 
+                    type = "text"
+                    value = {this.props.stateData.job}
+                    onChange = {this.props.jobHandler} />
                     <img src ={this.props.stateData.avatar} alt = "user-photo" className="avatar" /><br/>
                     <input
                     type ="file"
-                    accept="image/*" /><br/>
+                    accept="image/*"
+                    onChange ={this.props.avatarHandler} /><br/>
                     <button onClick="">create</button>
 
                 </form>

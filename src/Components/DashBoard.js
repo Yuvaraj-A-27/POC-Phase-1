@@ -11,13 +11,58 @@ class Dashboard extends React.Component{
             firstName : "",
             lastName :"",
             email : "",
+            job:"",
             avatar : "https://www.x-innovations.se/wp-content/uploads/dummy-prod-1.jpg",
             userDetail : [],
             currentUserPag : 1,
         }
     }
 
-    logOutHandler =()=>{
+    firstNameHandler = (event) => {
+        event.preventDefault();
+        this.setState({
+            firstName : event.target.value,
+        })
+    }
+    
+    lastNameHandler = (event) => {
+        event.preventDefault()
+        this.setState({
+            lastName : event.target.value
+        })
+    }
+
+    emailHandler = (event) => {
+        event.preventDefault()
+        this.setState({
+            email : event.target.value
+        })
+    }
+
+    jobHandler = (event) => {
+        event.preventDefault()
+        this.setState({
+            job : event.target.value
+        })
+    }
+
+    avatarHandler = (event) =>{
+        event.preventDefault()
+        const reader = new FileReader();
+        reader.onload = () => {
+            if(reader.readyState === 2){
+                this.setState(
+                    {
+                        avatar : reader.result,
+                    }
+                )
+            }
+        }
+        reader.readAsDataURL(event.target.files[0])
+    }
+
+    logOutHandler =(event)=>{
+        event.preventDefault()
         sessionStorage.removeItem("userName")
         this.props.history.push("/")
     }
@@ -53,7 +98,7 @@ class Dashboard extends React.Component{
     }
     
     render(){
-        console.log(this.state.userDetail);
+        // console.log(this.state.userDetail);
         const userName = sessionStorage.getItem("userName");
         if(sessionStorage.getItem("userName") !==null){
             return(
@@ -64,14 +109,20 @@ class Dashboard extends React.Component{
                 </div>
                 <div className="left-div">
                     <h4 className="left-div-h4">Create new user</h4>
-                    <CreateUser stateData = {this.state} />
+                    <CreateUser stateData = {this.state}
+                    firstNameHandler = {this.firstNameHandler}
+                    lastNameHandler = {this.lastNameHandler}
+                    emailHandler = {this.emailHandler}
+                    jobHandler = {this.jobHandler}
+                    avatarHandler = {this.avatarHandler} />
                 </div>
                 <div className="main-div">
                     <h4 className="main-div-h4">User Profiles</h4>
                     <Root className="" 
                     userDetail = {this.state.userDetail} 
                     currentUserPag = {this.state.currentUserPag}
-                    currentUserPagHandler = {this.currentUserPagHandler} />
+                    currentUserPagHandler = {this.currentUserPagHandler}
+                    />
                 </div>
                 </>
             )
