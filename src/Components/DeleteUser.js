@@ -1,4 +1,5 @@
 import React from 'react';
+import './DeleteUser.css'
 
 class DeleteUser extends React.Component{
 
@@ -63,9 +64,9 @@ class DeleteUser extends React.Component{
         {this.state.currentId === e.id &&
         <div key = {e.id}>
             <p><strong>First Name : </strong>{e.first_name}</p>
-            <p><strong>Last Name : </strong>{e.last_name}</p>
+            <p><strong>Last Name : &nbsp;</strong>{e.last_name}</p>
             <p><strong>Email : </strong>{e.email}</p>
-            <img src = {e.avatar} alt = "userAvatar" />
+            <img src = {e.avatar} alt = "userAvatar" className="delete-user-avatar" />
         </div>
         }
         </>))
@@ -73,10 +74,10 @@ class DeleteUser extends React.Component{
             <>
             {userData}<br/>
             {!this.state.deleteButtonClicked &&
-                <button onClick = {this.deleteHandler} >Delete</button>
+                <button className="delete-user-btn" onClick = {this.deleteHandler} >Delete</button>
             }
             {this.state.deleteButtonClicked &&
-                <button onClick = {this.confirmDeleteHandler} >Confirm</button>
+                <button className="delete-user-btn" onClick = {this.confirmDeleteHandler} >Confirm</button>
             }
             </>
         )

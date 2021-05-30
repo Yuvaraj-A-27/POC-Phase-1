@@ -1,0 +1,37 @@
+.update-user-avatar{
+    width : 25%;
+    margin-top: 2%;
+    margin-left: 18%;
+}
+
+.update-user-btn{
+    border:none;
+    color:rgb(58, 58, 58);
+    padding:6px 15px;
+    font-weight: 900;
+    font-size: 16px;
+    background-color: rgb(156, 252, 252);
+    margin-top: 1%;
+    margin-left: 18%;
+}
+
+.update-user-btn:hover{
+    background-color: rgb(118, 247, 247);
+}
+.update-user-file{
+    margin-left: 35%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.update-user-input{
+    background-color:rgb(156, 252, 252);
+    padding: 3px 10px;
+    box-sizing: border-box;
+    border: none;
+    color:rgb(58, 58, 58);
+    font-size: 18px;
+    font-weight: 500;
+    margin-left: 1%;
+    margin-top: 2%;
+}
