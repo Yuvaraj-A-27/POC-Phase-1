@@ -44,7 +44,7 @@ class Root extends React.Component{
         ))
 
         const pagination = this.props.userDetail.map( (element) => (<>
-            <button 
+            <button className={element.id === this.props.currentUserPag ? "pagination-button-active" : "pagination-button"}
             onClick={()=>this.props.currentUserPagHandler(element.id)} key = {element.id}>{element.id}</button>
             </>
         ))

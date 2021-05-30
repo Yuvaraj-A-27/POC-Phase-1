@@ -3,12 +3,12 @@ import './Card.css'
 function Card(props){
 
     return(
-        <div className="card">
-            <img src = {props.img} alt={props.alt} className="image" />
-            <div className="container">
+        <div className="">
+            <div className="">
                 <h4>{props.firstName} {props.lastName}</h4>
-                <p className="container-p">{props.email}</p>
+                <p className="">{props.email}</p>
             </div>
+            <img src = {props.img} alt={props.alt} className="card-img" />
         </div>
     )
 }
