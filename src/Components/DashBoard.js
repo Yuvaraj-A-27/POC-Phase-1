@@ -259,9 +259,9 @@ class Dashboard extends React.Component{
             )
         }
         else{
+            this.props.history.push("/login")
             return(
                 <>
-                    <p>Please Log in</p>
                 </>
             )
         }
