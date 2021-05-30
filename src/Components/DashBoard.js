@@ -2,6 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import CreateUser from './CreateUser';
 import './DashBoard.css'
+import DeleteUser from './DeleteUser';
 import Root from './Root'
 import UpdateUser from './UpdateUser';
 
@@ -124,6 +125,13 @@ class Dashboard extends React.Component{
             userDetail : updatedData,
         })
     }
+    
+    deleteUserHandler = (event,deletedData) =>{
+        event.preventDefault()
+        this.setState({
+            userDetail : deletedData,
+        })
+    }
 
     componentDidMount(){
         fetch("https://reqres.in/api/users")   //for first 6 users
@@ -136,23 +144,37 @@ class Dashboard extends React.Component{
                 userDetail : list
             })
         })
-        fetch("https://reqres.in/api/users?page=2")   //for second 6 users
-        .then((res) =>{ 
-           return res.json()
-        })
-        .then((data) => {
-            let list = [...this.state.userDetail]
-            list.push(...data.data)
-            this.setState({
-                userDetail : list,
-                componentDidMountHappened:true,
+        // fetch("https://reqres.in/api/users?page=2")   //for second 6 users
+        // .then((res) =>{ 
+        //    return res.json()
+        // })
+        // .then((data) => {
+        //     let list = [...this.state.userDetail]
+        //     list.push(...data.data)
+        //     this.setState({
+        //         userDetail : list,
+        //         componentDidMountHappened:true,
+        //     })
+        // })
+        setTimeout(() => {
+            fetch("https://reqres.in/api/users?page=2")   //for second 6 users
+            .then((res) =>{ 
+            return res.json()
             })
-        })
+            .then((data) => {
+                let list = [...this.state.userDetail]
+                list.push(...data.data)
+                this.setState({
+                    userDetail : list,
+                    componentDidMountHappened:true,
+                })
+            })
+        }, 100);
     }
     
     render(){
         // console.log(this.state.userDetail);
-        let updateData = this.state.userDetail;
+        let stateData = this.state.userDetail;
         let currentUser = this.state.currentUserPag
         const userName = sessionStorage.getItem("userName");
         if(sessionStorage.getItem("userName") !==null){
@@ -163,21 +185,29 @@ class Dashboard extends React.Component{
                     <p onClick = {this.logOutHandler} className="logout-btn">Log out</p>
                 </div>
                 <div className="left-div">
-                    <h4 className="left-div-h4">Create new user</h4>
-                    {/* <CreateUser stateData = {this.state}
+                    <h4 className="left-div-h4">Create New User</h4>
+                    <CreateUser stateData = {this.state}
                     firstNameHandler = {this.firstNameHandler}
                     lastNameHandler = {this.lastNameHandler}
                     emailHandler = {this.emailHandler}
                     jobHandler = {this.jobHandler}
                     avatarHandler = {this.avatarHandler}
-                    createUserHandler={this.createUserHandler} /> */}
+                    createUserHandler={this.createUserHandler} />
                     <br/>
-                    <h4 className = "left-div-h4">Update User Detail</h4>
+                    <h4 className = "">Update User Detail</h4>
                     {this.state.componentDidMountHappened && 
                         <UpdateUser 
-                        stateData = {updateData}
+                        stateData = {stateData}
                         currentUser = {currentUser}
                         updateUserHandler = {this.updateUserHandler} />
+                    }
+                    <br/>
+                    <h4 className = "">Delete User</h4>
+                    {this.state.componentDidMountHappened &&
+                        <DeleteUser
+                        stateData = {stateData}
+                        currentUser = {currentUser}
+                        deleteUserHandler = {this.deleteUserHandler} />
                     }
 
                 </div>

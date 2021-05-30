@@ -26,7 +26,7 @@ class CreateUser extends React.Component{
                     <input 
                     type = "text"
                     value = {this.props.stateData.job}
-                    onChange = {this.props.jobHandler} />
+                    onChange = {this.props.jobHandler} /><br/>
                     <img src ={this.props.stateData.avatar} alt = "user" className="avatar" /><br/>
                     <input
                     type ="file"

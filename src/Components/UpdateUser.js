@@ -102,10 +102,10 @@ class UpdateUser extends React.Component{
     }
 
     render(){
-        console.log(this.state.userDetail);
+        // console.log(this.state.userDetail);
         let updateDetail = this.state.userDetail.map((e) => (<>
         { this.state.currentId === e.id &&
-            <form>
+            <form key = {e.id}>
             <label>First Name </label>
             <input 
                 type = "text"
