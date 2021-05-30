@@ -80,6 +80,9 @@ class UpdateUser extends React.Component{
     
     confirmHandler = (event) => {
         this.props.updateUserHandler(event,this.state.userDetail)
+        this.setState({
+            updatedUserDetail:false
+        })
     }
 
     componentDidMount(){
