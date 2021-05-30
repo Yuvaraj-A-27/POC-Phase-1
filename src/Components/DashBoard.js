@@ -208,12 +208,14 @@ class Dashboard extends React.Component{
         if(sessionStorage.getItem("userName") !==null){
             return(
                 <>
-                <div>
-                    <p className="welcome">Hello {userName}!</p>
+                <div className="welcome">
+                    <p className="">Hello {userName}!</p>
                     <p onClick = {this.logOutHandler} className="logout-btn">Log out</p>
                 </div>
                 <div className="left-div">
-                    <h4 className="left-div-h4" onClick={this.createUserToggler}>Create New User</h4>
+                    <h4 className="left-div-h4-create" onClick={this.createUserToggler}>Create New User</h4>
+                    <h4 className="left-div-h4" onClick = {this.updateUserToggler}>Update User Detail</h4>
+                    <h4 className = "left-div-h4-delete" onClick = {this.deleteUserToggler}>Delete User</h4>
                     {this.state.createUserToggle &&
                     <>
                         <CreateUser stateData = {this.state}
@@ -226,7 +228,7 @@ class Dashboard extends React.Component{
                         <br/>
                     </>
                     }
-                    <h4 className = "" onClick = {this.updateUserToggler}>Update User Detail</h4>
+                    {/* <h4 className="left-div-h4" onClick = {this.updateUserToggler}>Update User Detail</h4> */}
                     {this.state.componentDidMountHappened && this.state.updateUserToggle &&
                     <>
                         <UpdateUser 
@@ -236,7 +238,7 @@ class Dashboard extends React.Component{
                         <br/>
                     </>
                     }
-                    <h4 className = "" onClick = {this.deleteUserToggler}>Delete User</h4>
+                    {/* <h4 className = "left-div-h4" onClick = {this.deleteUserToggler}>Delete User</h4> */}
                     {this.state.componentDidMountHappened && this.state.deleteUserToggle &&
                     <>
                         <DeleteUser
@@ -249,7 +251,7 @@ class Dashboard extends React.Component{
                 </div>
                 <div className="main-div">
                     <h4 className="main-div-h4">User Profiles</h4>
-                    <Root className="" 
+                    <Root 
                     userDetail = {this.state.userDetail} 
                     currentUserPag = {this.state.currentUserPag}
                     currentUserPagHandler = {this.currentUserPagHandler}
