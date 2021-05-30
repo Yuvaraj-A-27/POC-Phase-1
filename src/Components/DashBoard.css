@@ -38,6 +38,11 @@
 .left-div-h4-create:hover{
     color: rgb(214, 214, 214);
 }
+.left-div-h4-create-active{
+    /* margin-top: 100px; */
+    padding-top: 60px;
+    color: rgb(255, 141, 47);
+}
 
 .left-div-h4{
     padding-top: 20px;
@@ -46,6 +51,11 @@
 .left-div-h4:hover{
     color: rgb(214, 214, 214);
 }
+
+.left-div-h4-active{
+    padding-top: 20px;
+    color: rgb(255, 141, 47);
+}
 .left-div-h4-delete{
     padding-top: 20px;
     color: white;
@@ -53,6 +63,11 @@
 }
 .left-div-h4-delete:hover{
     color: rgb(214, 214, 214);
+}
+.left-div-h4-delete-active{
+    padding-top: 20px;
+    color: rgb(255, 141, 47);
+    padding-bottom: 25px;
 }
 
 .main-div{

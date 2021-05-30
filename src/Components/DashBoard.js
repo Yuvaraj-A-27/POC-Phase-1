@@ -213,9 +213,9 @@ class Dashboard extends React.Component{
                     <p onClick = {this.logOutHandler} className="logout-btn">Log out</p>
                 </div>
                 <div className="left-div">
-                    <h4 className="left-div-h4-create" onClick={this.createUserToggler}>Create New User</h4>
-                    <h4 className="left-div-h4" onClick = {this.updateUserToggler}>Update User Detail</h4>
-                    <h4 className = "left-div-h4-delete" onClick = {this.deleteUserToggler}>Delete User</h4>
+                    <h4 className={this.state.createUserToggle ? "left-div-h4-create-active" :"left-div-h4-create"} onClick={this.createUserToggler}>Create New User</h4>
+                    <h4 className={this.state.updateUserToggle ? "left-div-h4-active":"left-div-h4"} onClick = {this.updateUserToggler}>Update User Detail</h4>
+                    <h4 className = {this.state.deleteUserToggle ? "left-div-h4-delete-active":"left-div-h4-delete"} onClick = {this.deleteUserToggler}>Delete User</h4>
                     {this.state.createUserToggle &&
                     <>
                         <CreateUser stateData = {this.state}
