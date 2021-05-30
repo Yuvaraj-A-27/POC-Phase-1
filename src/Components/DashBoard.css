@@ -59,7 +59,7 @@
 .left-div-h4-delete{
     padding-top: 20px;
     color: white;
-    padding-bottom: 25px;
+    padding-bottom: 10px;
 }
 .left-div-h4-delete:hover{
     color: rgb(214, 214, 214);
@@ -67,7 +67,7 @@
 .left-div-h4-delete-active{
     padding-top: 20px;
     color: rgb(255, 141, 47);
-    padding-bottom: 25px;
+    padding-bottom: 10px;
 }
 
 .main-div{

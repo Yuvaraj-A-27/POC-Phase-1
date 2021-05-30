@@ -1,4 +1,5 @@
 import React from 'react';
+import './UpdateUser.css'
 
 class UpdateUser extends React.Component{
 
@@ -110,32 +111,37 @@ class UpdateUser extends React.Component{
             <input 
                 type = "text"
                 value = {this.state.firstName}
-                onChange ={this.firstNameHandler} /><br/>
-            <label>Last Name </label>
+                onChange ={this.firstNameHandler}
+                className="update-user-input" /><br/>
+            <label>Last Name&nbsp;&nbsp;</label>
             <input 
                 type = "text"
                 value = {this.state.lastName}
-                onChange = {this.lastNameHandler} /><br/>
-            <label>Email </label>
+                onChange = {this.lastNameHandler}
+                className="update-user-input" /><br/>
+            <label>Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
             <input
                 type ="email"
                 value = {this.state.email}
-                onChange = {this.emailHandler} /><br/>
+                onChange = {this.emailHandler}
+                className="update-user-input" /><br/>
             {/*<label>Job </label>
              <input 
                 type = "text"
                 value = {this.state.job}
                 onChange = "" /> */}
-            <img src = {this.state.avatar} alt = "user" className="" /><br/>
+            <img src = {this.state.avatar} alt = "user" className="update-user-avatar" /><br/>
             <input
                 type ="file"
                 accept="image/*"
-                onChange = {this.avatarHandler} /><br/>
+                onChange = {this.avatarHandler}
+                className="update-user-file" /><br/>
             {!this.state.updatedUserDetail &&    
             <input 
                 type="submit"
                 onClick= {this.updateHandler}
                 value = "Update"
+                className ="update-user-btn"
                 />
             }
             {this.state.updatedUserDetail &&
@@ -143,6 +149,7 @@ class UpdateUser extends React.Component{
                 type="submit"
                 onClick = {this.confirmHandler}
                 value = "Confirm"
+                className ="update-user-btn"
                 />
             }
 
