@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import './Register.css'
+import Close from '../media/close.png';
 
 class Register extends React.Component{
 
@@ -85,6 +86,11 @@ class Register extends React.Component{
         })
     }
 
+    closeHandler = (event) =>{
+        event.preventDefault()
+        this.props.history.push('/')
+    }
+
 
     render(){
         // const message = ""
@@ -113,6 +119,7 @@ class Register extends React.Component{
                     {this.state.notAnAdmin && 
                         <p className="error">Only Admin can register. Admin : "eve.holt@reqres.in"</p>
                     }
+                    <img src = {Close} onClick={this.closeHandler} alt = "close" className="form-img-dev"/>                
                 </form>
             </div>
         )

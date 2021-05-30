@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import './Login.css'
+import Close from '../media/close.png';
 
 class Login extends React.Component{
 
@@ -46,6 +47,11 @@ class Login extends React.Component{
         })
     }
 
+    closeHandler = (event) =>{
+        event.preventDefault()
+        this.props.history.push('/')
+    }
+
     componentDidMount(){
         // alert(localStorage.getItem("token"))
         this.refVariable.current.focus()
@@ -60,7 +66,8 @@ class Login extends React.Component{
                     <input className="form-input" type = "email" value = {this.state.email} onChange={this.emailHandler} ref ={this.refVariable} /><br/>
                     <label className="form-label">Password</label><br/>
                     <input className="form-input" type = "password" value = {this.state.password} onChange={this.passwordHandler}/><br/>
-                    <button className="form-btn" onClick={this.onSubmit}>Login</button>                
+                    <button className="form-btn" onClick={this.onSubmit}>Login</button>
+                    <img src = {Close} onClick={this.closeHandler} alt = "close" className="form-img"/>                
                 </form>
             </div>
         )
