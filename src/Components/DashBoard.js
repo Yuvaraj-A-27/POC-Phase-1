@@ -18,7 +18,10 @@ class Dashboard extends React.Component{
             avatar : "https://www.x-innovations.se/wp-content/uploads/dummy-prod-1.jpg",
             userDetail : [],
             currentUserPag : 1,
-            componentDidMountHappened : false
+            componentDidMountHappened : false,
+            createUserToggle : false,
+            updateUserToggle : false,
+            deleteUserToggle : false,
         }
     }
 
@@ -133,6 +136,31 @@ class Dashboard extends React.Component{
         })
     }
 
+    createUserToggler = (event) => {
+        event.preventDefault()
+        this.setState({
+            createUserToggle :true,
+            updateUserToggle :false,
+            deleteUserToggle :false,
+        })
+    }
+    updateUserToggler = (event) => {
+        event.preventDefault()
+        this.setState({
+            createUserToggle :false,
+            updateUserToggle :true,
+            deleteUserToggle :false,
+        })
+    }
+    deleteUserToggler = (event) => {
+        event.preventDefault()
+        this.setState({
+            createUserToggle :false,
+            updateUserToggle :false,
+            deleteUserToggle :true,
+        })
+    }
+
     componentDidMount(){
         fetch("https://reqres.in/api/users")   //for first 6 users
         .then((res) => {
@@ -185,29 +213,37 @@ class Dashboard extends React.Component{
                     <p onClick = {this.logOutHandler} className="logout-btn">Log out</p>
                 </div>
                 <div className="left-div">
-                    <h4 className="left-div-h4">Create New User</h4>
-                    <CreateUser stateData = {this.state}
-                    firstNameHandler = {this.firstNameHandler}
-                    lastNameHandler = {this.lastNameHandler}
-                    emailHandler = {this.emailHandler}
-                    jobHandler = {this.jobHandler}
-                    avatarHandler = {this.avatarHandler}
-                    createUserHandler={this.createUserHandler} />
-                    <br/>
-                    <h4 className = "">Update User Detail</h4>
-                    {this.state.componentDidMountHappened && 
+                    <h4 className="left-div-h4" onClick={this.createUserToggler}>Create New User</h4>
+                    {this.state.createUserToggle &&
+                    <>
+                        <CreateUser stateData = {this.state}
+                        firstNameHandler = {this.firstNameHandler}
+                        lastNameHandler = {this.lastNameHandler}
+                        emailHandler = {this.emailHandler}
+                        jobHandler = {this.jobHandler}
+                        avatarHandler = {this.avatarHandler}
+                        createUserHandler={this.createUserHandler} />
+                        <br/>
+                    </>
+                    }
+                    <h4 className = "" onClick = {this.updateUserToggler}>Update User Detail</h4>
+                    {this.state.componentDidMountHappened && this.state.updateUserToggle &&
+                    <>
                         <UpdateUser 
                         stateData = {stateData}
                         currentUser = {currentUser}
                         updateUserHandler = {this.updateUserHandler} />
+                        <br/>
+                    </>
                     }
-                    <br/>
-                    <h4 className = "">Delete User</h4>
-                    {this.state.componentDidMountHappened &&
+                    <h4 className = "" onClick = {this.deleteUserToggler}>Delete User</h4>
+                    {this.state.componentDidMountHappened && this.state.deleteUserToggle &&
+                    <>
                         <DeleteUser
                         stateData = {stateData}
                         currentUser = {currentUser}
                         deleteUserHandler = {this.deleteUserHandler} />
+                    </>
                     }
 
                 </div>
@@ -223,9 +259,9 @@ class Dashboard extends React.Component{
             )
         }
         else{
+            this.props.history.push("/login")
             return(
                 <>
-                    <p>Please Log in</p>
                 </>
             )
         }
