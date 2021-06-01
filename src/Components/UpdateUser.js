@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-// import './UpdateUser.css'
 
 const Input = styled.input `
     background-color:rgb(156, 252, 252);
@@ -55,28 +54,24 @@ class UpdateUser extends React.Component{
     }
 
     firstNameHandler = (e) => {
-        // e.preventDefault()
         this.setState({
             firstName : e.target.value
         })
     }
 
     lastNameHandler = (e) => {
-        // e.preventDefault()
         this.setState({
             lastName : e.target.value
         })
     }
 
     emailHandler = (e) => {
-        // e.preventDefault()
         this.setState({
             email : e.target.value
         })
     }
 
     avatarHandler = (event) =>{
-        // event.preventDefault()
         const reader = new FileReader();
         reader.onload = () => {
             if(reader.readyState === 2){
@@ -142,62 +137,48 @@ class UpdateUser extends React.Component{
     }
 
     render(){
-        // console.log(this.state.userDetail);
-        let updateDetail = this.state.userDetail.map((e,index) => (<>
-        { this.state.currentId === index+1 &&
-            <form key = {e.id}>
-            <label>First Name </label>
-            <Input 
-                type = "text"
-                value = {this.state.firstName}
-                onChange ={this.firstNameHandler}
-                // value = {this.props.stateData2.firstName}
-                // onChange = {this.props.firstNameHandler}
-                 /><br/>
-            <label>Last Name&nbsp;&nbsp;</label>
-            <Input 
-                type = "text"
-                value = {this.state.lastName}
-                onChange = {this.lastNameHandler}
-                /><br/>
-            <label>Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-            <Input
-                type ="email"
-                value = {this.state.email}
-                onChange = {this.emailHandler}
-                 /><br/>
-            {/*<label>Job </label>
-             <input 
-                type = "text"
-                value = {this.state.job}
-                onChange = "" /> */}
-            <Img src = {this.state.avatar} alt = "user" /><br/>
-            <File
-                type ="file"
-                accept="image/*"
-                onChange = {this.avatarHandler}
-                 /><br/>
-            {!this.state.updatedUserDetail &&    
-            <Button 
-                type="submit"
-                onClick= {this.updateHandler}
-                value = "Update"
-                />
-            }
-            {this.state.updatedUserDetail &&
-            <Button 
-                type="submit"
-                onClick = {this.confirmHandler}
-                value = "Confirm"
-                />
-            }
-
-            </form>
-        }
-        </>))
         return(
-            <>
-            {updateDetail}
+            <>         
+            <form>
+                <label>First Name </label>
+                <Input 
+                    type = "text"
+                    value = {this.state.firstName}
+                    onChange ={this.firstNameHandler}
+                    /><br/>
+                <label>Last Name&nbsp;&nbsp;</label>
+                <Input 
+                    type = "text"
+                    value = {this.state.lastName}
+                    onChange = {this.lastNameHandler}
+                    /><br/>
+                <label>Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <Input
+                    type ="email"
+                    value = {this.state.email}
+                    onChange = {this.emailHandler}
+                    /><br/>
+                <Img src = {this.state.avatar} alt = "user" /><br/>
+                <File
+                    type ="file"
+                    accept="image/*"
+                    onChange = {this.avatarHandler}
+                    /><br/>
+                {!this.state.updatedUserDetail &&    
+                <Button 
+                    type="submit"
+                    onClick= {this.updateHandler}
+                    value = "Update"
+                    />
+                }
+                {this.state.updatedUserDetail &&
+                <Button 
+                    type="submit"
+                    onClick = {this.confirmHandler}
+                    value = "Confirm"
+                    />
+                }
+            </form>
             </>
         )
     }

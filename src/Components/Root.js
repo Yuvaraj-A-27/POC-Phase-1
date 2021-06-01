@@ -57,46 +57,22 @@ class Root extends React.Component{
     // }
 
     render(){
-        // const userDetail = this.props.userDetail.map( (element) => (<>
-        //     { (this.props.currentUserPag === element.id) &&
-        //     <Card key = {element.id} 
-        //         img={element.avatar} alt={element.id} 
-        //         firstName ={element.first_name} 
-        //         lastName = {element.last_name} email ={element.email}   
-        //     />
-        //     }
-        //     </>
-        // ))
-        const userDetail = this.props.userDetail.map( (element,index) => (<>
-            { (this.props.currentUserPag === index+1) &&
-            <Card key = {element.id} 
-                img={element.avatar} alt={element.id} 
-                firstName ={element.first_name} 
-                lastName = {element.last_name} email ={element.email}   
-            />
-            }
-            </>
-        ))
-
-        // const pagination = this.props.userDetail.map( (element) => (<>
-        //     <button className={element.id === this.props.currentUserPag ? "pagination-button-active" : "pagination-button"}
-        //     onClick={()=>this.props.currentUserPagHandler(element.id)} key = {element.id}>{element.id}</button>
-        //     </>
-        // ))
-
-        const pagination = this.props.userDetail.map( (element,index) => (<>
+        const userDetail = this.props.userDetail[this.props.currentUserPag - 1]
+        const pagination = this.props.userDetail.map( (element,index) => (
             <Button active={index + 1 === this.props.currentUserPag ? "active" : ""}
             onClick={()=>this.props.currentUserPagHandler(index+1)} key = {element.id}>{index+1}</Button>
-            </>
         ))
 
         return(
             <>
             <PagDiv>
-                {/* <button>&laquo;</button> */}
                 {pagination}
             </PagDiv>
-                {userDetail}
+                <Card 
+                img={userDetail.avatar} alt={userDetail.id} 
+                firstName ={userDetail.first_name} 
+                lastName = {userDetail.last_name} email ={userDetail.email}   
+                />
             </>
         )
     }

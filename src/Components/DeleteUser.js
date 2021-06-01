@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-// import './DeleteUser.css'
 
 const Avatar = styled.img `
     width : 25%;
@@ -37,29 +36,6 @@ class DeleteUser extends React.Component{
 
     deleteHandler = async (event) =>{
         event.preventDefault()
-        // let deleteList = []
-        // let flag =0
-        
-        // await this.state.userDetail.map((e)=>{
-        //     if(e.id !== this.state.currentId){
-        //         if(flag===1){
-        //             let data = {
-        //                 id : (e.id - 1),
-        //                 email : e.email,
-        //                 first_name : e.first_name,
-        //                 last_name : e.last_name,
-        //                 avatar : e.avatar,
-        //             }
-        //             deleteList.push(data)
-        //         }
-        //         else{
-        //             deleteList.push(e)
-        //         }
-        //     }
-        //     else{
-        //         flag = 1
-        //     }
-        // })
         let deleteList = this.state.userDetail.filter((element,index) => (index+1)!==this.state.currentId) //here element is not used but without that filter wont function properly
         this.setState({
             userDetail : deleteList,
@@ -85,19 +61,14 @@ class DeleteUser extends React.Component{
     }
 
     render(){
-        let userData = this.props.stateData.map((e,index) =>(<>
-        {this.state.currentId === index+1 &&
-        <div key = {e.id}>
-            <p><strong>First Name : </strong>{e.first_name}</p>
-            <p><strong>Last Name : &nbsp;</strong>{e.last_name}</p>
-            <p><strong>Email : </strong>{e.email}</p>
-            <Avatar src = {e.avatar} alt = "userAvatar" />
-        </div>
-        }
-        </>))
+        let userData = this.props.stateData[this.state.currentId-1]
         return(
             <>
-            {userData}<br/>
+            <p><strong>First Name : </strong>{userData.first_name}</p>
+            <p><strong>Last Name : &nbsp;</strong>{userData.last_name}</p>
+            <p><strong>Email : </strong>{userData.email}</p>
+            <Avatar src = {userData.avatar} alt = "userAvatar" />
+            <br/>
             {!this.state.deleteButtonClicked &&
                 <Button onClick = {this.deleteHandler} >Delete</Button>
             }

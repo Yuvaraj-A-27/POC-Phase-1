@@ -94,24 +94,11 @@ class Register extends React.Component{
     onSubmit = (event)=>{
         event.preventDefault()
         if(this.state.firstName && this.state.lastName && this.state.email && this.state.password){
-            // fetch("https://reqres.in/api/register",{
-            //     method : 'POST',
-            //     headers: {'Content-Type':'application/json'},
-            //     body : {
-            //         "email" : this.state.email,
-            //         "password" : this.state.password
-            //     }
-            // })
-            // fetch("https://reqres.in/api/register", this.state)
             axios.post("https://reqres.in/api/register", {
                         email : this.state.email,
                         password : this.state.password
             })
             .then((res) => {
-                // localStorage.setItem("token",res.data.token)
-                // localStorage.setItem("userName",(this.state.firstName +" "+this.state.lastName))
-                // alert(localStorage.getItem("userName") +" is successfully registered")
-                // alert(localStorage.getItem("userName"))
                 if(res.data.token){
                     this.props.history.push("/login")
                 }
@@ -138,34 +125,26 @@ class Register extends React.Component{
     }
 
     emailHandler = (event) =>{
-        // event.preventDefault()
         this.setState({
             email : event.target.value,
-            // dataNotEntered : false
         })
         this.dataNotEnteredHandler()
     }
     passwordHandler = (event) =>{
-        // event.preventDefault()
         this.setState({
             password : event.target.value,
-            // dataNotEntered : false
         })
         this.dataNotEnteredHandler()
     }
     firstNameHandler = (event) =>{
-        // event.preventDefault()
         this.setState({
             firstName : event.target.value,
-            // dataNotEntered : false
         })
         this.dataNotEnteredHandler()
     }
     lastNameHandler = (event) =>{
-        // event.preventDefault()
         this.setState({
             lastName : event.target.value,
-            // dataNotEntered : false
         })
         this.dataNotEnteredHandler()
     }
@@ -177,13 +156,6 @@ class Register extends React.Component{
 
 
     render(){
-        // const message = ""
-        // if(this.state.dataNotEntered){
-        //     var message = <p className="error">Please enter all the fields</p>
-        // }
-        // else if(this.state.notAnAdmin){
-        //     var message = <p className="error">Only Admin can register. Admin : "eve.holt@reqres.in"</p>
-        // }
         return(
             <FormDiv>
                 <Form>

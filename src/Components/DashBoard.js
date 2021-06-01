@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React from 'react';
 import CreateUser from './CreateUser';
-// import './DashBoard.css'
 import DeleteUser from './DeleteUser';
 import Root from './Root'
 import UpdateUser from './UpdateUser';
@@ -125,43 +124,33 @@ class Dashboard extends React.Component{
         .then(this.setState({
             componentDidMountHappened:true
         }))
-        // setTimeout(() => {
-        //     this.setState({
-        //         componentDidMountHappened:true, //this is because when userdetail gets updated, it is not reflecting in updateUser component. so that to re-render that component we need this.
-        //     })
-        // }, 100);
     }
 
     firstNameHandler = (event) => {
-        // event.preventDefault();
         this.setState({
             firstName : event.target.value,
         })
     }
     
     lastNameHandler = (event) => {
-        // event.preventDefault()
         this.setState({
             lastName : event.target.value
         })
     }
 
     emailHandler = (event) => {
-        // event.preventDefault()
         this.setState({
             email : event.target.value
         })
     }
 
     jobHandler = (event) => {
-        // event.preventDefault()
         this.setState({
             job : event.target.value
         })
     }
 
     avatarHandler = (event) =>{
-        // event.preventDefault()
         const reader = new FileReader();
         reader.onload = () => {
             if(reader.readyState === 2){
@@ -177,24 +166,11 @@ class Dashboard extends React.Component{
 
     logOutHandler =(event)=>{
         event.preventDefault()
-        // sessionStorage.removeItem("userName")
         localStorage.removeItem("email")
         localStorage.removeItem("token")
         this.props.history.push("/")
     }
 
-    // currentUserPagHandler = (id) =>{
-    //     this.setState({
-    //         currentUserPag :id,
-    //         componentDidMountHappened:false,
-    //     })
-        
-    //     setTimeout(() => {
-    //         this.setState({
-    //             componentDidMountHappened:true
-    //         })
-    //     }, 100);
-    // }
     currentUserPagHandler = (index) =>{
         this.setState({
             currentUserPag :index,
@@ -258,18 +234,6 @@ class Dashboard extends React.Component{
                 userDetail : list
             })
         })
-        // fetch("https://reqres.in/api/users?page=2")   //for second 6 users
-        // .then((res) =>{ 
-        //    return res.json()
-        // })
-        // .then((data) => {
-        //     let list = [...this.state.userDetail]
-        //     list.push(...data.data)
-        //     this.setState({
-        //         userDetail : list,
-        //         componentDidMountHappened:true,
-        //     })
-        // })
         setTimeout(() => {
             fetch("https://reqres.in/api/users?page=2")   //for second 6 users
             .then((res) =>{ 
@@ -287,14 +251,12 @@ class Dashboard extends React.Component{
     }
     
     render(){
-        // console.log(this.state.userDetail);
         let stateData = this.state.userDetail;
         let currentUser = this.state.currentUserPag
         const userName = localStorage.getItem("email");
         if(localStorage.getItem("email") === null){
             this.props.history.push("/login")
         }
-        // if(localStorage.getItem("email") !==null){
             return(
                 <>
                 <TopDiv>
@@ -355,14 +317,6 @@ class Dashboard extends React.Component{
                 </MainDiv>
                 </>
             )
-        // }
-        // else{
-        //     this.props.history.push("/login")
-        //     return(
-        //         <>
-        //         </>
-        //     )
-        // }
     }
 }
 

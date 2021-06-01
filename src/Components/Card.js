@@ -13,7 +13,6 @@ function Card(props){
                 <h4>{props.firstName} {props.lastName}</h4>
                 <p className="">{props.email}</p>
             </div>
-            {/* <img src = {props.img} alt={props.alt} className="card-img" /> */}
             <Image src = {props.img} alt={props.alt} className="card-img" />
             
         </div>
