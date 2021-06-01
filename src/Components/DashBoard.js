@@ -309,11 +309,12 @@ class Dashboard extends React.Component{
                 </LeftDiv>
                 <MainDiv>
                     <MainDivH4>User Profiles</MainDivH4>
-                    <Root 
-                    userDetail = {this.state.userDetail} 
-                    currentUserPag = {this.state.currentUserPag}
-                    currentUserPagHandler = {this.currentUserPagHandler}
-                    />
+                        <Root 
+                            userDetail = {this.state.userDetail} 
+                            currentUserPag = {this.state.currentUserPag}
+                            currentUserPagHandler = {this.currentUserPagHandler}
+                            componentDidMountHappened = {this.state.componentDidMountHappened}
+                        />
                 </MainDiv>
                 </>
             )

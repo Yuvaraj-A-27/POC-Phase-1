@@ -29,50 +29,25 @@ const Button = styled.button `
 
 class Root extends React.Component{
 
-    // constructor(props){
-    //     super(props);
-
-    //     this.state = {
-    //         userDetail : [],
-    //         currentUser : 7
-    //     }
-    // }
-
-    // clickHandler = (id) =>{
-    //     this.setState({
-    //         currentUser:id
-    //     })
-    // }
-
-    // componentDidMount(){
-    //     fetch("https://reqres.in/api/users?page=2")
-    //     .then((res) =>{ 
-    //        return res.json()
-    //     })
-    //     .then((data) => {
-    //         this.setState({
-    //             userDetail : data.data,
-    //         })
-    //     })
-    // }
-
     render(){
         const userDetail = this.props.userDetail[this.props.currentUserPag - 1]
         const pagination = this.props.userDetail.map( (element,index) => (
             <Button active={index + 1 === this.props.currentUserPag ? "active" : ""}
             onClick={()=>this.props.currentUserPagHandler(index+1)} key = {element.id}>{index+1}</Button>
         ))
-
+        console.log(userDetail);
         return(
             <>
             <PagDiv>
                 {pagination}
             </PagDiv>
+            {this.props.componentDidMountHappened &&
                 <Card 
                 img={userDetail.avatar} alt={userDetail.id} 
                 firstName ={userDetail.first_name} 
                 lastName = {userDetail.last_name} email ={userDetail.email}   
                 />
+            }
             </>
         )
     }
