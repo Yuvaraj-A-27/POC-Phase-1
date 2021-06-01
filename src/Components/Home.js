@@ -29,10 +29,6 @@ class Home extends React.Component{
 
     render(){
         return(
-            // <div className="Home-div">
-            //     <Link to = '/register' className="Home-register">Register</Link>
-            //     <Link to = '/login' className="Home-login">Login</Link>
-            // </div>
             <HomeDiv>
                 <LinkButton to = '/register'>Register</LinkButton>
                 <LinkButton to = '/login'>Login</LinkButton>
