@@ -1,10 +1,79 @@
 import axios from 'axios';
 import React from 'react';
 import CreateUser from './CreateUser';
-import './DashBoard.css'
+// import './DashBoard.css'
 import DeleteUser from './DeleteUser';
 import Root from './Root'
 import UpdateUser from './UpdateUser';
+import styled from 'styled-components';
+
+const TopDiv = styled.div `
+    font-size: 25px;
+    font-weight: 100;
+    background-color: rgba(224, 219, 219, 0.842);
+    margin-left: 30%;
+    padding-bottom: 2px;
+    padding-top: 3px;
+`
+const Logout = styled.p `
+    float:right;
+    margin-right: 30px;
+    margin-top: -61px;
+    font-size: 20px;
+    color: rgb(251, 253, 251);
+    font-weight: 400;
+    background-color: rgb(64, 189, 247);
+    padding: 10px;
+    box-shadow: 5px 7px 8px 2px rgb(167, 165, 165);
+
+    &:hover{
+        box-shadow: 5px 7px 8px 3px rgb(167, 165, 165);
+        background-color: rgba(13, 156, 223, 0.863);
+    }
+`
+const LeftDiv = styled.div `
+    background-color: rgb(58, 181, 238);
+    margin-right: 70%;
+    min-height: 637px;
+    margin-top: -105px;
+`
+
+const CreateTag = styled.h4 `
+    padding-top: 60px;
+    color : ${props => props.active==='active'? "rgb(255, 141, 47)" : "white"};
+
+    &:hover{
+        color: rgb(214, 214, 214);
+    }
+`
+
+const UpdateTag = styled.h4 `
+    padding-top: 20px;
+    color: ${props => props.active==='active'? "rgb(255, 141, 47)" : "white"};
+
+    &:hover{
+        color: rgb(214, 214, 214);
+    }
+`
+
+const DeleteTag = styled.h4 `
+    padding-top: 20px;
+    color: ${props => props.active==='active'? "rgb(255, 141, 47)" : "white"};
+    padding-bottom: 10px;
+    &:hover{
+        color: rgb(214, 214, 214);
+    }
+`
+const MainDiv = styled.div `
+    margin-left: 30%;
+    margin-top: -550px;
+    min-height: 516px;
+`
+
+const MainDivH4 = styled.h4 `
+    padding-top: 20px;
+    font-size: 25px;
+`
 
 class Dashboard extends React.Component{
     constructor(props){
@@ -228,14 +297,16 @@ class Dashboard extends React.Component{
         // if(localStorage.getItem("email") !==null){
             return(
                 <>
-                <div className="welcome">
-                    <p className="">Hello {userName}!</p>
-                    <p onClick = {this.logOutHandler} className="logout-btn">Log out</p>
-                </div>
-                <div className="left-div">
-                    <h4 className={this.state.createUserToggle ? "left-div-h4-create-active" :"left-div-h4-create"} onClick={this.createUserToggler}>Create New User</h4>
-                    <h4 className={this.state.updateUserToggle ? "left-div-h4-active":"left-div-h4"} onClick = {this.updateUserToggler}>Update User Detail</h4>
-                    <h4 className = {this.state.deleteUserToggle ? "left-div-h4-delete-active":"left-div-h4-delete"} onClick = {this.deleteUserToggler}>Delete User</h4>
+                <TopDiv>
+                    <p>Hello {userName}!</p>
+                    <Logout onClick = {this.logOutHandler}>Log out</Logout>
+                </TopDiv>
+
+                <LeftDiv>
+                    {/* <CreateTag className={this.state.createUserToggle ? "left-div-h4-create-active" :"left-div-h4-create"} onClick={this.createUserToggler}>Create New User</CreateTag> */}
+                    <CreateTag active={this.state.createUserToggle ? "active" : "" } onClick={this.createUserToggler} >Create New User</CreateTag>
+                    <UpdateTag active={this.state.updateUserToggle ? "active" : "" } onClick = {this.updateUserToggler}>Update User Detail</UpdateTag>
+                    <DeleteTag active={this.state.deleteUserToggle ? "active" : "" } onClick = {this.deleteUserToggler}>Delete User</DeleteTag>
                     {this.state.createUserToggle &&
                     <>
                         <CreateUser stateData = {this.state}
@@ -273,16 +344,15 @@ class Dashboard extends React.Component{
                         currentUserPagHandler = {this.currentUserPagHandler} />
                     </>
                     }
-
-                </div>
-                <div className="main-div">
-                    <h4 className="main-div-h4">User Profiles</h4>
+                </LeftDiv>
+                <MainDiv>
+                    <MainDivH4>User Profiles</MainDivH4>
                     <Root 
                     userDetail = {this.state.userDetail} 
                     currentUserPag = {this.state.currentUserPag}
                     currentUserPagHandler = {this.currentUserPagHandler}
                     />
-                </div>
+                </MainDiv>
                 </>
             )
         // }

@@ -1,7 +1,70 @@
 import axios from 'axios';
 import React from 'react';
-import './Login.css'
+// import './Login.css'
 import Close from '../media/close.png';
+import styled from 'styled-components';
+
+const FormDiv = styled.div `
+    position:fixed;
+    /* display:; */
+    margin-top: 60px;
+    margin-bottom: auto;
+    margin-left: 480px;
+    margin-right: auto;
+    z-index: 5;
+`
+const Form = styled.form `
+    align-items: center;
+    width: 400px;
+    height: 360px;
+    border-radius: 2%;
+    text-align: center;
+    line-height: 30px;
+    box-shadow: 0 4px 10px 4px black;
+`
+const Label = styled.label `
+    align-items: center;
+    color: black;
+    font-weight: 700;
+    font-style: italic;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+`
+const Title = styled.h3 `
+    padding-top: 30px;
+`
+const Button = styled.button `
+    padding: 5px 15px;
+    border: 10px;
+    color: white;
+    background-color: springgreen;
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 25px;
+
+    &:hover{
+        background-color: rgb(12, 211, 112);
+    }
+`
+const Input = styled.input `
+    vertical-align: middle;
+    padding: 7px;
+    width: 70%;
+    margin-top: 10px;
+
+    &:hover{
+        box-shadow: 1px 2px 10px 1px rgb(134, 133, 133);
+    }
+`
+const CloseImg = styled.img `
+    width: 30px;
+    margin-top : -210px;
+    padding-right: 20px;
+    float : right;
+
+    &:hover{
+        width: 32px;
+    }
+`
 
 class Login extends React.Component{
 
@@ -61,17 +124,17 @@ class Login extends React.Component{
 
     render(){
         return (
-            <div className="form-div">
-                <form className="form">
-                    <h3 className="form-h3">Login</h3>
-                    <label className="form-label">Email</label><br/>
-                    <input className="form-input" type = "email" value = {this.state.email} onChange={this.emailHandler} ref ={this.refVariable} /><br/>
-                    <label className="form-label">Password</label><br/>
-                    <input className="form-input" type = "password" value = {this.state.password} onChange={this.passwordHandler}/><br/>
-                    <button className="form-btn" onClick={this.onSubmit}>Login</button>
-                    <img src = {Close} onClick={this.closeHandler} alt = "close" className="form-img"/>                
-                </form>
-            </div>
+            <FormDiv>
+                <Form>
+                    <Title>Login</Title>
+                    <Label >Email</Label><br/>
+                    <Input type = "email" value = {this.state.email} onChange={this.emailHandler} ref ={this.refVariable} /><br/>
+                    <Label>Password</Label><br/>
+                    <Input  type = "password" value = {this.state.password} onChange={this.passwordHandler}/><br/>
+                    <Button onClick={this.onSubmit}>Login</Button>
+                    <CloseImg src = {Close} onClick={this.closeHandler} alt = "close"/>                
+                </Form>
+            </FormDiv>
         )
     }
 }

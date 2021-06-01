@@ -1,6 +1,31 @@
 import React from 'react';
+import styled from 'styled-components';
 import Card from './Card';
-import './Root.css';
+// import './Root.css';
+
+const PagDiv = styled.div `
+    display:flex;
+    justify-content: center;
+    margin-top: 50px;
+    margin-left : auto;
+    margin-right: auto;
+`
+const Button = styled.button `
+    /* color: black; */
+    color: ${props => props.active==='active'? "rgb(253, 252, 252)" : "black"};
+    float: left;
+    padding: 8px 18px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid rgb(87, 87, 87);
+    margin: 0 4px;
+    background-color: ${props => props.active==="active" ? "chartreuse" : ""};
+
+    &:hover{
+        /* background-color: #ddd; */
+        background-color: ${props => props.active==='active' ? "" : "#ddd"};
+    }
+`
 
 class Root extends React.Component{
 
@@ -60,17 +85,17 @@ class Root extends React.Component{
         // ))
 
         const pagination = this.props.userDetail.map( (element,index) => (<>
-            <button className={index + 1 === this.props.currentUserPag ? "pagination-button-active" : "pagination-button"}
-            onClick={()=>this.props.currentUserPagHandler(index+1)} key = {element.id}>{index+1}</button>
+            <Button active={index + 1 === this.props.currentUserPag ? "active" : ""}
+            onClick={()=>this.props.currentUserPagHandler(index+1)} key = {element.id}>{index+1}</Button>
             </>
         ))
 
         return(
             <>
-            <div className="pagination">
+            <PagDiv>
                 {/* <button>&laquo;</button> */}
                 {pagination}
-            </div>
+            </PagDiv>
                 {userDetail}
             </>
         )

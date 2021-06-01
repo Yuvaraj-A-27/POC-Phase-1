@@ -1,7 +1,76 @@
 import axios from 'axios';
 import React from 'react';
-import './Register.css'
+import styled from 'styled-components';
+// import './Register.css'
 import Close from '../media/close.png';
+
+const FormDiv = styled.div `
+    position:fixed;
+    /* display:; */
+    margin-top: 45px;
+    margin-bottom: auto;
+    margin-left: 480px;
+    margin-right: auto;
+    z-index: 5;
+`
+const Form = styled.form `
+    align-items: center;
+    width: 400px;
+    height: 460px;
+    border-radius: 2%;
+    text-align: center;
+    line-height: 30px;
+    box-shadow: 0 4px 10px 4px black;
+`
+const Label = styled.label `
+    align-items: center;
+    color: black;
+    /* padding-top: 100px; */
+    /* margin-top: 10px; */
+    font-weight: 700;
+    font-style: italic;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+`
+const H3 = styled.h3 `
+    padding-top: 30px;
+`
+const Img = styled.img `
+    width: 30px;
+    margin-top : -60px;
+    padding-right: 20px;
+    float : right;
+
+    &:hover{
+        width: 32px;
+    }
+`
+const Input = styled.input `
+    vertical-align: middle;
+    padding: 5px;
+    width: 70%;
+    margin-top: 5px;
+    &:hover{
+        box-shadow: 1px 2px 10px 1px rgb(134, 133, 133);
+    }
+`
+const Button = styled.button `
+    padding: 5px 15px;
+    border: 10px;
+    color: white;
+    background-color: springgreen;
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 20px;
+    &:hover{
+        background-color: rgb(12, 211, 112);
+    }
+`
+const P = styled.p `
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+`
+
 
 class Register extends React.Component{
 
@@ -116,27 +185,27 @@ class Register extends React.Component{
         //     var message = <p className="error">Only Admin can register. Admin : "eve.holt@reqres.in"</p>
         // }
         return(
-            <div className="form-div-dev">
-                <form className="form-dev">
-                    <h3 className="form-h3-dev">Register</h3>
-                    <img src = {Close} onClick={this.closeHandler} alt = "close" className="form-img-dev"/>                
-                    <label className="form-label-dev">First Name</label><br/>
-                    <input type = "text" value={this.state.firstName} onChange = {this.firstNameHandler} ref={this.refVariable} className="form-input-dev"/><br/>
-                    <label className="form-label-dev">Last Name</label><br/>
-                    <input type = "text" value={this.state.lastName} onChange = {this.lastNameHandler} className="form-input-dev"/><br/>
-                    <label className="form-label-dev">Email</label><br/>
-                    <input type = "email" value={this.state.email} onChange = {this.emailHandler} className="form-input-dev"/><br/>
-                    <label className="form-label-dev">Password</label><br/>
-                    <input type = "password" value={this.state.password} onChange = {this.passwordHandler} className="form-input-dev"/><br/>
-                    <button className="form-btn-dev" onClick={this.onSubmit}>Register</button><br/>
+            <FormDiv>
+                <Form>
+                    <H3>Register</H3>
+                    <Img src = {Close} onClick={this.closeHandler} alt = "close"/>                
+                    <Label>First Name</Label><br/>
+                    <Input type = "text" value={this.state.firstName} onChange = {this.firstNameHandler} ref={this.refVariable}/><br/>
+                    <Label>Last Name</Label><br/>
+                    <Input type = "text" value={this.state.lastName} onChange = {this.lastNameHandler} /><br/>
+                    <Label>Email</Label><br/>
+                    <Input type = "email" value={this.state.email} onChange = {this.emailHandler} /><br/>
+                    <Label>Password</Label><br/>
+                    <Input type = "password" value={this.state.password} onChange = {this.passwordHandler}/><br/>
+                    <Button onClick={this.onSubmit}>Register</Button><br/>
                     {this.state.dataNotEntered &&
-                        <p className="error">Please enter all the fields</p> 
+                        <P>Please enter all the fields</P> 
                     }
                     {this.state.notAnAdmin && 
-                        <p className="error">Only Admin can register. Admin : "eve.holt@reqres.in"</p>
+                        <P>Only Admin can register. Admin : "eve.holt@reqres.in"</P>
                     }
-                </form>
-            </div>
+                </Form>
+            </FormDiv>
         )
     }
 }

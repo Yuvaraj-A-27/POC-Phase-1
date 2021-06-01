@@ -1,5 +1,26 @@
 import React from 'react';
-import './DeleteUser.css'
+import styled from 'styled-components';
+// import './DeleteUser.css'
+
+const Avatar = styled.img `
+    width : 25%;
+    margin-top: 2%;
+    margin-left: 0%;
+`
+const Button = styled.button `
+    border:none;
+    color:rgb(58, 58, 58);
+    padding:6px 15px;
+    font-weight: 900;
+    font-size: 16px;
+    background-color: rgb(156, 252, 252);
+    margin-top: 1%;
+    margin-left: 0%;
+
+    &:hover{
+        background-color: rgb(118, 247, 247);
+    }
+`
 
 class DeleteUser extends React.Component{
 
@@ -53,7 +74,6 @@ class DeleteUser extends React.Component{
         })
         if(this.state.currentId >= this.state.userDetail.length){
             this.props.currentUserPagHandler(this.state.userDetail.length)
-            console.log("running");
         }
     }
 
@@ -71,7 +91,7 @@ class DeleteUser extends React.Component{
             <p><strong>First Name : </strong>{e.first_name}</p>
             <p><strong>Last Name : &nbsp;</strong>{e.last_name}</p>
             <p><strong>Email : </strong>{e.email}</p>
-            <img src = {e.avatar} alt = "userAvatar" className="delete-user-avatar" />
+            <Avatar src = {e.avatar} alt = "userAvatar" />
         </div>
         }
         </>))
@@ -79,10 +99,10 @@ class DeleteUser extends React.Component{
             <>
             {userData}<br/>
             {!this.state.deleteButtonClicked &&
-                <button className="delete-user-btn" onClick = {this.deleteHandler} >Delete</button>
+                <Button onClick = {this.deleteHandler} >Delete</Button>
             }
             {this.state.deleteButtonClicked &&
-                <button className="delete-user-btn" onClick = {this.confirmDeleteHandler} >Confirm</button>
+                <Button  onClick = {this.confirmDeleteHandler} >Confirm</Button>
             }
             </>
         )
