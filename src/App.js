@@ -1,12 +1,14 @@
 import React from 'react';
-// import Navbar from './Components/Navbar';
-import './App.css'
 import { Route, BrowserRouter as Router, Switch, useHistory } from 'react-router-dom';
 import Register from './Components/Register';
 import Login from './Components/Login';
 import Dashboard from './Components/DashBoard';
 import Home from './Components/Home';
+import styled from 'styled-components';
 
+const MainDiv = styled.div `
+  text-align: center;
+`
 
 function App(){
   let history = useHistory()
@@ -14,16 +16,13 @@ function App(){
   return(
     <>
       <Router>
-          {/* <div>
-              <Navbar/>
-          </div> */}
           <Switch>
-              <div className="MainContent">
+              <MainDiv>
                 <Route path="/" exact  component={Home} />
                 <Route path="/register"  component={Register} />
                 <Route path="/login"  component={Login}  />
                 <Route path="/dashboard"  component={Dashboard} /> 
-              </div>  
+              </MainDiv>  
           </Switch>
       </Router>
     </>

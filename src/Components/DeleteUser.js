@@ -1,5 +1,25 @@
 import React from 'react';
-import './DeleteUser.css'
+import styled from 'styled-components';
+
+const Avatar = styled.img `
+    width : 25%;
+    margin-top: 2%;
+    margin-left: 0%;
+`
+const Button = styled.button `
+    border:none;
+    color:rgb(58, 58, 58);
+    padding:6px 15px;
+    font-weight: 900;
+    font-size: 16px;
+    background-color: rgb(156, 252, 252);
+    margin-top: 1%;
+    margin-left: 0%;
+
+    &:hover{
+        background-color: rgb(118, 247, 247);
+    }
+`
 
 class DeleteUser extends React.Component{
 
@@ -16,29 +36,6 @@ class DeleteUser extends React.Component{
 
     deleteHandler = async (event) =>{
         event.preventDefault()
-        // let deleteList = []
-        // let flag =0
-        
-        // await this.state.userDetail.map((e)=>{
-        //     if(e.id !== this.state.currentId){
-        //         if(flag===1){
-        //             let data = {
-        //                 id : (e.id - 1),
-        //                 email : e.email,
-        //                 first_name : e.first_name,
-        //                 last_name : e.last_name,
-        //                 avatar : e.avatar,
-        //             }
-        //             deleteList.push(data)
-        //         }
-        //         else{
-        //             deleteList.push(e)
-        //         }
-        //     }
-        //     else{
-        //         flag = 1
-        //     }
-        // })
         let deleteList = this.state.userDetail.filter((element,index) => (index+1)!==this.state.currentId) //here element is not used but without that filter wont function properly
         this.setState({
             userDetail : deleteList,
@@ -53,7 +50,6 @@ class DeleteUser extends React.Component{
         })
         if(this.state.currentId >= this.state.userDetail.length){
             this.props.currentUserPagHandler(this.state.userDetail.length)
-            console.log("running");
         }
     }
 
@@ -65,24 +61,19 @@ class DeleteUser extends React.Component{
     }
 
     render(){
-        let userData = this.props.stateData.map((e,index) =>(<>
-        {this.state.currentId === index+1 &&
-        <div key = {e.id}>
-            <p><strong>First Name : </strong>{e.first_name}</p>
-            <p><strong>Last Name : &nbsp;</strong>{e.last_name}</p>
-            <p><strong>Email : </strong>{e.email}</p>
-            <img src = {e.avatar} alt = "userAvatar" className="delete-user-avatar" />
-        </div>
-        }
-        </>))
+        let userData = this.props.stateData[this.state.currentId-1]
         return(
             <>
-            {userData}<br/>
+            <p><strong>First Name : </strong>{userData.first_name}</p>
+            <p><strong>Last Name : &nbsp;</strong>{userData.last_name}</p>
+            <p><strong>Email : </strong>{userData.email}</p>
+            <Avatar src = {userData.avatar} alt = "userAvatar" />
+            <br/>
             {!this.state.deleteButtonClicked &&
-                <button className="delete-user-btn" onClick = {this.deleteHandler} >Delete</button>
+                <Button onClick = {this.deleteHandler} >Delete</Button>
             }
             {this.state.deleteButtonClicked &&
-                <button className="delete-user-btn" onClick = {this.confirmDeleteHandler} >Confirm</button>
+                <Button  onClick = {this.confirmDeleteHandler} >Confirm</Button>
             }
             </>
         )

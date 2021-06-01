@@ -1,5 +1,10 @@
 import React from 'react';
-import './Card.css'
+import styled from 'styled-components';
+
+const Image = styled.img`
+    width : 15%;
+`
+
 function Card(props){
 
     return(
@@ -8,7 +13,8 @@ function Card(props){
                 <h4>{props.firstName} {props.lastName}</h4>
                 <p className="">{props.email}</p>
             </div>
-            <img src = {props.img} alt={props.alt} className="card-img" />
+            <Image src = {props.img} alt={props.alt} className="card-img" />
+            
         </div>
     )
 }
