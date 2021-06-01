@@ -53,43 +53,46 @@ class Dashboard extends React.Component{
         .then((res) => {
             console.log(res)
         })
-        setTimeout(() => {
-            this.setState({
-                componentDidMountHappened:true, //this is because when userdetail gets updated, it is not reflecting in updateUser component. so that to re-render that component we need this.
-            })
-        }, 100);
+        .then(this.setState({
+            componentDidMountHappened:true
+        }))
+        // setTimeout(() => {
+        //     this.setState({
+        //         componentDidMountHappened:true, //this is because when userdetail gets updated, it is not reflecting in updateUser component. so that to re-render that component we need this.
+        //     })
+        // }, 100);
     }
 
     firstNameHandler = (event) => {
-        event.preventDefault();
+        // event.preventDefault();
         this.setState({
             firstName : event.target.value,
         })
     }
     
     lastNameHandler = (event) => {
-        event.preventDefault()
+        // event.preventDefault()
         this.setState({
             lastName : event.target.value
         })
     }
 
     emailHandler = (event) => {
-        event.preventDefault()
+        // event.preventDefault()
         this.setState({
             email : event.target.value
         })
     }
 
     jobHandler = (event) => {
-        event.preventDefault()
+        // event.preventDefault()
         this.setState({
             job : event.target.value
         })
     }
 
     avatarHandler = (event) =>{
-        event.preventDefault()
+        // event.preventDefault()
         const reader = new FileReader();
         reader.onload = () => {
             if(reader.readyState === 2){
@@ -105,13 +108,27 @@ class Dashboard extends React.Component{
 
     logOutHandler =(event)=>{
         event.preventDefault()
-        sessionStorage.removeItem("userName")
+        // sessionStorage.removeItem("userName")
+        localStorage.removeItem("email")
+        localStorage.removeItem("token")
         this.props.history.push("/")
     }
 
-    currentUserPagHandler = (id) =>{
+    // currentUserPagHandler = (id) =>{
+    //     this.setState({
+    //         currentUserPag :id,
+    //         componentDidMountHappened:false,
+    //     })
+        
+    //     setTimeout(() => {
+    //         this.setState({
+    //             componentDidMountHappened:true
+    //         })
+    //     }, 100);
+    // }
+    currentUserPagHandler = (index) =>{
         this.setState({
-            currentUserPag :id,
+            currentUserPag :index,
             componentDidMountHappened:false,
         })
         
@@ -204,8 +221,11 @@ class Dashboard extends React.Component{
         // console.log(this.state.userDetail);
         let stateData = this.state.userDetail;
         let currentUser = this.state.currentUserPag
-        const userName = sessionStorage.getItem("userName");
-        if(sessionStorage.getItem("userName") !==null){
+        const userName = localStorage.getItem("email");
+        if(localStorage.getItem("email") === null){
+            this.props.history.push("/login")
+        }
+        // if(localStorage.getItem("email") !==null){
             return(
                 <>
                 <div className="welcome">
@@ -234,6 +254,11 @@ class Dashboard extends React.Component{
                         <UpdateUser 
                         stateData = {stateData}
                         currentUser = {currentUser}
+                        stateData2 = {this.state}
+                        firstNameHandler = {this.firstNameHandler}
+                        lastNameHandler = {this.lastNameHandler}
+                        emailHandler = {this.emailHandler}
+                        avatarHandler = {this.avatarHandler}
                         updateUserHandler = {this.updateUserHandler} />
                         <br/>
                     </>
@@ -244,7 +269,8 @@ class Dashboard extends React.Component{
                         <DeleteUser
                         stateData = {stateData}
                         currentUser = {currentUser}
-                        deleteUserHandler = {this.deleteUserHandler} />
+                        deleteUserHandler = {this.deleteUserHandler}
+                        currentUserPagHandler = {this.currentUserPagHandler} />
                     </>
                     }
 
@@ -259,14 +285,14 @@ class Dashboard extends React.Component{
                 </div>
                 </>
             )
-        }
-        else{
-            this.props.history.push("/login")
-            return(
-                <>
-                </>
-            )
-        }
+        // }
+        // else{
+        //     this.props.history.push("/login")
+        //     return(
+        //         <>
+        //         </>
+        //     )
+        // }
     }
 }
 

@@ -16,29 +16,30 @@ class DeleteUser extends React.Component{
 
     deleteHandler = async (event) =>{
         event.preventDefault()
-        let deleteList = []
-        let flag =0
+        // let deleteList = []
+        // let flag =0
         
-        await this.state.userDetail.map((e)=>{
-            if(e.id !== this.state.currentId){
-                if(flag===1){
-                    let data = {
-                        id : (e.id - 1),
-                        email : e.email,
-                        first_name : e.first_name,
-                        last_name : e.last_name,
-                        avatar : e.avatar,
-                    }
-                    deleteList.push(data)
-                }
-                else{
-                    deleteList.push(e)
-                }
-            }
-            else{
-                flag = 1
-            }
-        })
+        // await this.state.userDetail.map((e)=>{
+        //     if(e.id !== this.state.currentId){
+        //         if(flag===1){
+        //             let data = {
+        //                 id : (e.id - 1),
+        //                 email : e.email,
+        //                 first_name : e.first_name,
+        //                 last_name : e.last_name,
+        //                 avatar : e.avatar,
+        //             }
+        //             deleteList.push(data)
+        //         }
+        //         else{
+        //             deleteList.push(e)
+        //         }
+        //     }
+        //     else{
+        //         flag = 1
+        //     }
+        // })
+        let deleteList = this.state.userDetail.filter((element,index) => (index+1)!==this.state.currentId) //here element is not used but without that filter wont function properly
         this.setState({
             userDetail : deleteList,
             deleteButtonClicked :true,
@@ -50,6 +51,10 @@ class DeleteUser extends React.Component{
         this.setState({
             deleteButtonClicked:false
         })
+        if(this.state.currentId >= this.state.userDetail.length){
+            this.props.currentUserPagHandler(this.state.userDetail.length)
+            console.log("running");
+        }
     }
 
     componentDidMount(){
@@ -60,8 +65,8 @@ class DeleteUser extends React.Component{
     }
 
     render(){
-        let userData = this.props.stateData.map((e) =>(<>
-        {this.state.currentId === e.id &&
+        let userData = this.props.stateData.map((e,index) =>(<>
+        {this.state.currentId === index+1 &&
         <div key = {e.id}>
             <p><strong>First Name : </strong>{e.first_name}</p>
             <p><strong>Last Name : &nbsp;</strong>{e.last_name}</p>
