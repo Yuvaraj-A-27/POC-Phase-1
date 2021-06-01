@@ -16,13 +16,13 @@ class Login extends React.Component{
         this.refVariable = React.createRef()
     }
     emailHandler = (event) =>{
-        event.preventDefault()
+        // event.preventDefault()
         this.setState({
             email : event.target.value
         })
     }
     passwordHandler = (event) =>{
-        event.preventDefault()
+        // event.preventDefault()
         this.setState({
             password : event.target.value
         })
@@ -34,9 +34,11 @@ class Login extends React.Component{
             password : this.state.password,
         })
         .then((res)=>{
-            if(res.data.token === localStorage.getItem("token")){
+            if(res.data.token){
                 // alert(localStorage.getItem("userName"))
-                sessionStorage.setItem("userName", localStorage.getItem("userName"))
+                // sessionStorage.setItem("userName", localStorage.getItem("userName"))
+                localStorage.setItem("token",res.data.token)
+                localStorage.setItem("email",(this.state.email))
                 // alert(sessionStorage.getItem("userName"))
                 this.props.history.push("/dashboard")
             }

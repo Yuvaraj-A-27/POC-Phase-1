@@ -8,7 +8,7 @@ class Home extends React.Component{
         return(
             <div className="Home-div">
                 <Link to = '/register' className="Home-register">Register</Link>
-                <Link to = '/login' className="Home-login" >Login</Link>
+                <Link to = '/login' className="Home-login">Login</Link>
             </div>
         )
     }

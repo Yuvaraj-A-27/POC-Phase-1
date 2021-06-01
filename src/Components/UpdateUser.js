@@ -19,28 +19,28 @@ class UpdateUser extends React.Component{
     }
 
     firstNameHandler = (e) => {
-        e.preventDefault()
+        // e.preventDefault()
         this.setState({
             firstName : e.target.value
         })
     }
 
     lastNameHandler = (e) => {
-        e.preventDefault()
+        // e.preventDefault()
         this.setState({
             lastName : e.target.value
         })
     }
 
     emailHandler = (e) => {
-        e.preventDefault()
+        // e.preventDefault()
         this.setState({
             email : e.target.value
         })
     }
 
     avatarHandler = (event) =>{
-        event.preventDefault()
+        // event.preventDefault()
         const reader = new FileReader();
         reader.onload = () => {
             if(reader.readyState === 2){
@@ -64,8 +64,8 @@ class UpdateUser extends React.Component{
             avatar : this.state.avatar,
         }
         let updateList = []
-        await this.state.userDetail.map((element) => {
-            if(element.id === this.state.currentId){
+        await this.state.userDetail.map((element,index) => {
+            if(index+1 === this.state.currentId){
                 updateList.push(updatedData)
             }
             else{
@@ -92,8 +92,8 @@ class UpdateUser extends React.Component{
         })
 
         setTimeout(() => {
-            let data = this.props.stateData.map((ele) =>{
-                if(this.state.currentId === ele.id){
+            let data = this.props.stateData.map((ele,index) =>{
+                if(this.state.currentId === index+1){
                     this.setState({
                         firstName : ele.first_name,
                         lastName : ele.last_name,
@@ -107,14 +107,16 @@ class UpdateUser extends React.Component{
 
     render(){
         // console.log(this.state.userDetail);
-        let updateDetail = this.state.userDetail.map((e) => (<>
-        { this.state.currentId === e.id &&
+        let updateDetail = this.state.userDetail.map((e,index) => (<>
+        { this.state.currentId === index+1 &&
             <form key = {e.id}>
             <label>First Name </label>
             <input 
                 type = "text"
                 value = {this.state.firstName}
                 onChange ={this.firstNameHandler}
+                // value = {this.props.stateData2.firstName}
+                // onChange = {this.props.firstNameHandler}
                 className="update-user-input" /><br/>
             <label>Last Name&nbsp;&nbsp;</label>
             <input 

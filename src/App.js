@@ -19,10 +19,10 @@ function App(){
           </div> */}
           <Switch>
               <div className="MainContent">
-                <Route path="/" exact history = {history} component={Home} />
-                <Route path="/register"  history = {history} component={Register} />
-                <Route path="/login" history = {history} component={Login}  />
-                <Route path="/dashboard" history = {history} component={Dashboard} /> 
+                <Route path="/" exact  component={Home} />
+                <Route path="/register"  component={Register} />
+                <Route path="/login"  component={Login}  />
+                <Route path="/dashboard"  component={Dashboard} /> 
               </div>  
           </Switch>
       </Router>
